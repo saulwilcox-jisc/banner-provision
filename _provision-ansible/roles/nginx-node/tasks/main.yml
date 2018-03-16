@@ -1,0 +1,14 @@
+---
+ - name: Install nginx
+   yum:
+     name: nginx
+     state: latest
+
+ - name: Start nginx
+   service: name=nginx state=running enabled=yes
+
+ - name: Copy banner config
+   template: src=p-proxypass-http80.conf.j2 dest=/etc/nginx/conf.d/jisc-banner.conf
+
+ - name: Restart nginx
+   service: name=nginx state=restarted

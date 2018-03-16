@@ -1,0 +1,25 @@
+---
+- apt_key:
+    id: EEA14886
+    url: "https://ftp-master.debian.org/keys/archive-key-6.0.asc"
+    state: present
+
+- apt_repository:
+    repo: deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main
+    state: present
+
+- apt_repository:
+    repo: deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main
+    state: present
+
+- name: Install java 8 prerequesite python-software-properties
+  apt: name=python-software-properties update_cache=yes
+
+- name: Install java 8 prerequisite software-properties-common
+  apt: name=software-properties-common update_cache=yes
+
+- name: Agree to oracle license
+  debconf: name=oracle-java8-installer question=shared/accepted-oracle-license-v1-1 vtype=select value=true
+
+- name: Install Java 8
+  apt: name=oracle-java8-installer update_cache=yes
