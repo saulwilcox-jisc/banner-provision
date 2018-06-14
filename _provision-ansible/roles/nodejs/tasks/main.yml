@@ -1,16 +1,17 @@
 ---
  - name: Install git, curl and build-essentials meta package
-   yum: name={{item}} state=latest
-     with_items:
-      git
-      curl
-      nss
-      nspr
-      nss-util
-      gcc
-      gcc-c++
-      make
-      epel-release
+   yum: 
+     name: "{{item}}"
+   with_items:
+     - git
+     - curl
+     - nss
+     - nspr
+     - nss-util
+     - gcc
+     - gcc-c++
+     - make
+     - epel-release
 
  - name: Install nodejs
    yum:
